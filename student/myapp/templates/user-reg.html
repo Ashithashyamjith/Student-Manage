@@ -1,0 +1,139 @@
+{% extends 'ad-home.html' %}
+{% block content %}
+<script>
+  function validation(){
+    var name = document.getElementById('name').value;
+    var phone = document.getElementById('phone').value;
+    var regx = /^[6-9]\d{9}$/
+    var email = document.getElementById('email').value;
+    var username = document.getElementById('user').value;
+    var password = document.getElementById('pass').value;
+    var confpassword = document.getElementById('conpass').value;
+    if(name == ""){
+      document.getElementById('uname').innerHTML=" ** Please fill the name field";
+      return false;
+    }
+    if(phone == ""){
+      document.getElementById('phn').innerHTML=" ** Please fill the contact number";
+      return false;
+    }
+    if(isNaN(phone)){
+      document.getElementById('phn').innerHTML=" ** User must write digits only not characters";
+      return false;
+    }
+    if(phone.length!=10){
+      document.getElementById('phn').innerHTML=" ** Mobile no should be atleast 10 digit";
+      return false;
+    }
+    if(!regx.test(phone)){
+      document.getElementById('phn').innerHTML=" ** Please enter valid number"
+    }
+    if(email == ""){
+      document.getElementById('mail').innerHTML=" ** Please fill the email field";
+      return false;
+    }
+    if(username == ""){
+      document.getElementById('username').innerHTML=" ** Please fill the username field";
+      return false;
+    }
+    if(password == ""){
+      document.getElementById('pswrd').innerHTML=" ** Please fill the password field";
+      return false;
+    }
+    if((password.length<=5)|| (password.length>12)) {
+      document.getElementById('pswrd').innerHTML=" ** Password length between 5 and 12";
+      return false;
+    }
+    if(confpassword == ""){
+      document.getElementById('cpass').innerHTML=" ** Please fill the confirm password field";
+      return false;
+    }
+    if(password == confpassword){
+      return true;
+    }
+    else{
+      document.getElementById('conpass').value="";
+      document.getElementById('cpass').innerHTML=" ** Re enter the password";
+      document.getElementById('conpass').innerHTML="";
+      return false;
+    }
+    
+  }
+</script>
+<div class="row">
+   <section class="main">
+    <div class="col-md-12" style="background: rgba(0, 0, 0, 0.4); height:800px; box-shadow: -1px 1px 60px 10px black inset; position: absolute;  margin-left: 11%; width: 80%; margin-top: 2%;">
+      <h1 class="text-center" style="font-size: 40px; color: black; margin-top: 20px; margin-bottom: 30px; margin-left: 3%; "><b>Students Registration Form</b></h1>
+      
+      <form action="user-registration"  method="POST" onclick="return validation();" enctype="multipart/form-data" >
+         {% csrf_token %}
+          <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label" style="font-size:18px; padding-left: 3%;"><b>Name</b></label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" name="name" id="name" placeholder="Name" style="width: 80%;" required>
+              <div id="uname" style=" width: 665px; font-size: 16px; color: #C62828;background: rgba(255, 0, 0, 0.1);text-align: center;border-radius:3px border: 1px solid #EF9A9A;"></div>
+            </div>
+          </div>
+          <br>
+          <div class="form-group row">
+              <label for="contact" class="col-sm-2 col-form-label" style="font-size:18px; padding-left: 3%;"><b>Contact</b></label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" name="phone" id="phone" placeholder="Mobile no" style="width: 80%;" required>
+                <div id="phn" style=" width: 665px; font-size: 16px; color: #C62828;background: rgba(255, 0, 0, 0.1);text-align: center;border-radius: 3px; border: 1px solid #EF9A9A;" ></div>
+              </div>
+          </div>
+          <br>
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label" style="font-size:18px; padding-left:3%;"><b>Email</b></label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" name="email" id="email" placeholder="Email " style="width: 80%;" required>
+              <div id="mail" style=" width: 665px; font-size: 16px; color: #C62828;background: rgba(255, 0, 0, 0.1);text-align: center; border-radius: 3px;border: 1px solid #EF9A9A;"></div>
+            </div>
+          </div>
+          <br>
+          <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label" style="font-size:18px; padding-left: 3%;"><b>UserName</b></label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" name="username" id="user" placeholder="UserName" style="width: 80%;" required>
+              <div id="username" style=" width: 665px; font-size: 16px; color: #C62828;background: rgba(255, 0, 0, 0.1);text-align: center; border-radius: 3px;border: 1px solid #EF9A9A;"></div>
+            </div>
+          </div>
+          <br>
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label" style="font-size:18px; padding-left:3%;"><b>Password</b></label>
+            <div class="col-lg-10">
+              <input type="password" class="form-control" name="password" id="pass" placeholder="Password " style="width: 80%;" required>
+              <div id="pswrd" style=" width: 665px; font-size: 16px; color: #C62828;background: rgba(255, 0, 0, 0.1);text-align: center; border-radius: 3px;border: 1px solid #EF9A9A;"></div>
+            </div>
+          </div>
+          <br>
+          <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label" style="font-size:18px; padding-left:3%;"><b>ConfirmPassword</b></label>
+            
+            <div class="col-lg-10">
+              <input type="password" class="form-control" name="confpassword" id="conpass" placeholder="ConfirmPassword " style="width: 80%;" required>
+              <div id="cpass" style=" width: 665px; font-size: 16px; color: #C62828;background: rgba(255, 0, 0, 0.1);text-align: center; border-radius: 3px;border: 1px solid #EF9A9A;"></div>
+            </div>
+          </div>
+          <br>
+          <div class="btn-group inline " > 
+            <button type="submit" class="btn btn-info" style="margin-top: 20px; margin-left: 87%; width: 450px; font-size: 19px; ">Register</button> 
+          </div>
+           
+         
+          
+          
+          
+         
+        </form>
+        
+  </div>
+
+
+
+  </section>
+    
+  
+</div>
+
+{% endblock %}

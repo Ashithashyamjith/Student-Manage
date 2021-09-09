@@ -1,0 +1,40 @@
+{% extends 'ad-home.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-lg-12">
+    <h2 style="margin-left: 4%; margin-top: 3%; "><b>View Active Student</b></h2>
+  </div>
+</div>
+
+<form action="leave-histroy" method="POST">
+    {% csrf_token %}
+    <div class="col-md-6">
+      <table class="table table-stripped" style="border: 1px solid black; text-align: center; margin-top: 4%;">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">UserName</th>
+            <th scope="col">Name</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for i in active %}
+             <tr>
+               <td>{{i.id}}</td>
+               <td>{{i.user_log.username}}</td>
+               <td>{{i.name}}</td>
+               <td><form method="POST" action="status-stud">
+                 {% csrf_token %}
+                 <button id={{i.id}} value="{{i.id}}" name="status" type="submit">Inactivate</button>
+               </form></td>
+             </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    
+    </div>
+</form>
+
+{% endblock %}

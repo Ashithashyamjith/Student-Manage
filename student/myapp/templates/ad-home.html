@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="{% static 'css/emp_reg.css' %}">
+    
+</head>
+<body style="font-family: sans-serif;">
+    <div class="col-lg-10" id="header" >
+        <nav class="navbar navbar-expand-lg navbar-light " style="background-image: linear-gradient(to right, #000000 0%, #808080 100%);box-shadow: 0 .1rem .3rem #999; width: 123%; margin-right: 2%;">
+          
+          <h5 style=" font-weight: 500; margin-left: 83%;"><b>Welcome Admin</b></h5>
+        </nav>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-2">
+        <div class="navbar navbar-dark" style="background-image: linear-gradient(to right, #000000 0%, #808080 100%);padding: 0 ;box-shadow: 0 .1rem .3rem #999; ">
+          <h4 style="text-align: center; color: white; font-weight: bold;font-size: 250%; margin-left: 15%; margin-top: 15%;">Admin</h4>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+              <a class="nav-link" href="#" style="margin-left: 30%;margin-top: 20%;">Home</a>  
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="user-reg" style="margin-left: 30%; margin-top: 10%;">Add Student</a>  
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="active-stud" style="margin-left: 30%;margin-top: 10%;">View Active Student</a>  
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="inactive-stud" style="margin-left: 30%;margin-top: 10%;">View Inactive Student</a>  
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="admin-logout" style="margin-left: 30%;margin-top: 10%;">Logout</a>  
+          </li>
+          
+        </ul>
+        </div>
+      </div>
+      <div class="col-md-10" >
+        {% block content %}
+        {% endblock %}
+
+      </div>
+    </div>
+     
+  </body>
+  
+  
+</html>
